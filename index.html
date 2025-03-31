@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+</head>
+<body>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        li.completed {
+            background-color: #d3f9d8;
+            text-decoration: line-through;
+        }
+        .delete {
+            color: red;
+            cursor: pointer;
+        }
+        .delete:hover {
+            color: darkred;
+        }
+        #subscription {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            text-align: center;
+        }
+        .text {
+            color: rgb(44, 44, 44);
+            font-size: clamp(10px, 0.8vw, 14px);
+            font-weight: 400;
+            margin: 2px 0;
+            letter-spacing: 0.5px;
+        }
+        #hrt {
+            font-size: clamp(12px, 1.2vw, 18px);
+            color: rgb(255, 69, 69);
+            font-weight: bold;
+            margin: -6px 0;
+        }
+        .name {
+            font-size: clamp(12px, 1.2vw, 16px);
+            font-weight: bold;
+            font-family: "Montserrat", sans-serif;
+            color: black;
+            text-transform: uppercase;
+        }
+    </style>
+    <div class="container">
+        <h2>To-Do List</h2>
+        <input type="text" id="taskInput" placeholder="Add a new task...">
+        <button onclick="addTask()">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+    <div id="subscription">
+        <p class="text">Made with</p>
+        <div id="hrt">♥</div>
+        <p class="text">by <span class="name">Saurab</span></p>
+    </div>
+
+    <script>
+         function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+            const taskList = document.getElementById('taskList');
+            const li = document.createElement('li');
+            const taskContent = document.createElement('span');
+            taskContent.textContent = taskText;
+            li.appendChild(taskContent);
+            const deleteButton = document.createElement('span');
+            deleteButton.textContent = '❌';
+            deleteButton.classList.add('delete');
+            deleteButton.onclick = function() {
+                taskList.removeChild(li);
+            };
+            li.appendChild(deleteButton);
+            li.onclick = function() {
+                li.classList.toggle('completed');
+            };
+            taskList.appendChild(li);
+            taskInput.value = "";
+        }
+    </script>
+</body>
+</html>
