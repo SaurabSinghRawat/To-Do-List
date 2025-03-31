@@ -7,7 +7,6 @@ This is a simple and responsive To-Do List web application built using HTML, CSS
 ### 📝 Task Management
 - Users can add tasks to the list.
 - Tasks can be marked as completed with a single click.
-- Completed tasks are visually distinguished from pending tasks.
 
 ### 🚀 Interactive UI
 - The app features a clean and modern user interface.
